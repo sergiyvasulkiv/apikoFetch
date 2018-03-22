@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<a href="home.html"><h2>Home</h2></a>
+<ul id="postList" class="list-group col-xs-8 col-xs-push-1"
+    data-bind ="foreach: {data: postsList, as:'post'},visible:isPostsList">
+    <a  data-bind="attr:{href:`?postId=${post.id}`}">
+        <li class="list-group-item post-item">
+            Post№ <span data-bind="text:post.id "></span>
+    </li>
+    </a>
+</ul>
+
+<div class="col-xs-10 col-xs-push-1"
+     data-bind="visible:issinglePost, with:currentPost()" >
+    <br>
+    <h4>Title:<span data-bind="text:title"></span></h4>
+    Post:<p data-bind="text:body"></p>
+    <a data-bind="attr:{href:`?userId=${userId}`}">
+       <h3> User:<span data-bind="text:userId"></span>
+       </h3>
+    </a>
+    <ul  class="list-group"
+         data-bind="foreach:{data:$root.commentsList, as: 'comment'}">
+        <li  class="list-group-item"
+             data-bind="with:comment">
+            Name:<p data-bind="text:comment.name"></p>
+            Comment:<p data-bind="text:comment.body"></p>
+            Email:<span data-bind="text:comment.email"></span>
+        </li>
+    </ul>
+</div>
+
+<div class="col-xs-8 col-xs-push-1"
+     data-bind="visible:isUserPage, with:currentUser" >
+    Name: <span data-bind="text:name"> </span> <br>
+    Username: <span data-bind="text:username"></span> <br>
+    Email: <span data-bind="text:email"></span> <br>
+    City: <span data-bind="text:address.city"></span> <br>
+    Website: <span data-bind="text:website"></span>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
