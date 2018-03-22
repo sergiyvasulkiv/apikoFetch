@@ -27,6 +27,7 @@ async function isPost(id) {
             json.forEach(post => {
                 if (id == post.id) {
                     postExist = true;
+                    return;
                 }
             });
         })
